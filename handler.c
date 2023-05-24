@@ -1,10 +1,13 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include "monty.h"
 
 #define BUFFER_SIZE 1024
 
+
+/**
+ * handler - Reads and interprets the Monty bytecode file.
+ * @file: file gotten from command
+ */
 void handler(FILE *file)
 {
 	char buffer[BUFFER_SIZE];
@@ -18,7 +21,7 @@ void handler(FILE *file)
 		opcode = strtok(buffer, " \t\n$");
 
 		if (opcode == NULL || opcode[0] == '#')
-			continue; /* Ignore empty lines and comments */
+			continue;
 
 		argument = strtok(NULL, " \t\n$");
 

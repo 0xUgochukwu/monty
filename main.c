@@ -1,7 +1,14 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "monty.h"
 
+stack_t *stack = NULL;
+
+/**
+ * main - Entry point of the Monty interpreter.
+ * @argc: Number of command-line arguments.
+ * @argv: Array of command-line argument strings.
+ *
+ * Return: EXIT_SUCCESS upon successful execution, EXIT_FAILURE otherwise.
+ */
 int main(int argc, char *argv[])
 {
 	FILE *file;
@@ -22,5 +29,5 @@ int main(int argc, char *argv[])
 	handler(file);
 	fclose(file);
 
-	return EXIT_SUCCESS;
+	return (EXIT_SUCCESS);
 }
