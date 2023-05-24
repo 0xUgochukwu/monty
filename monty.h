@@ -38,9 +38,10 @@ typedef struct instruction_s
 /* Global Variables */
 extern char *argument;
 
-void push(stack_t **stack, unsigned int line_number __attribute__((unused)));
+void push(stack_t **stack, unsigned int line_number); 
 void pall(stack_t **stack, unsigned int line_number __attribute__((unused)));
 void pint(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
 
 void handler(FILE *file);
 int get_opcode_argument(char *buffer, char **opcode);

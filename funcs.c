@@ -5,7 +5,7 @@
  * @stack: Double pointer to the head of the stack.
  * @line_number: current line number
  */
-void push(stack_t **stack, unsigned int line_number __attribute__((unused)))
+void push(stack_t **stack, unsigned int line_number);
 {
 	stack_t *new_node = malloc(sizeof(stack_t));
 
@@ -64,5 +64,29 @@ void pint(stack_t **stack, unsigned int line_number)
 	}
 
 	printf("%d\n", (*stack)->n);
+}
+
+
+/**
+ * pop - Removes the top element of the stack.
+ * @stack: Double pointer to the head of the stack.
+ * @line_number: Current line number.
+ */
+void pop(stack_t **stack, unsigned int line_number)
+{
+	stack_t *temp;
+
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	temp = *stack;
+	*stack = (*stack)->next;
+	if (*stack != NULL)
+		(*stack)->prev = NULL;
+
+	free(temp);
 }
 
