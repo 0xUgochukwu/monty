@@ -3,9 +3,9 @@
 /**
  * push - Pushes an element to the stack.
  * @stack: Double pointer to the head of the stack.
- * @value: number to push unto the stack
+ * @line_number: current line number
  */
-void push(stack_t **stack, int value)
+void push(stack_t **stack, unsigned int line_number __attribute__((unused)))
 {
 	stack_t *new_node = malloc(sizeof(stack_t));
 
@@ -15,7 +15,7 @@ void push(stack_t **stack, int value)
 		exit(EXIT_FAILURE);
 	}
 
-	new_node->n = value;
+	new_node->n = atoi(argument);
 	new_node->prev = NULL;
 	new_node->next = *stack;
 
@@ -29,8 +29,9 @@ void push(stack_t **stack, int value)
 /**
  * pall - Prints all the values on the stack.
  * @stack: Double pointer to the head of the stack.
+ * @line_number: current line number
  */
-void pall(stack_t **stack)
+void pall(stack_t **stack, unsigned int line_number __attribute__((unused)))
 {
 	stack_t *current = *stack;
 
