@@ -40,10 +40,16 @@ extern char *argument;
 
 void push(stack_t **stack, unsigned int line_number __attribute__((unused)));
 void pall(stack_t **stack, unsigned int line_number __attribute__((unused)));
+
+
 void handler(FILE *file);
-int is_numeric(const char *str);
 int get_opcode_argument(char *buffer, char **opcode);
 int execute_opcode(char *opcode, stack_t **stack, unsigned int line_number);
+
+
+int is_numeric(const char *str);
+void _free(stack_t *stack);
+int _isdigit(char *str);
 
 
 #endif
