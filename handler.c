@@ -76,8 +76,9 @@ void handler(FILE *file)
 	{
 		line_number++;
 
-		if (!get_opcode_argument(buffer, &opcode) || strcmp(opcode, "nop") == 1)
+		if (!get_opcode_argument(buffer, &opcode) || strcmp(opcode, "nop") == 0)
 			continue;
+
 
 		if (!execute_opcode(opcode, &stack, line_number))
 			exit(EXIT_FAILURE);
