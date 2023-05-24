@@ -1,4 +1,5 @@
 #include <ctype.h>
+#include <stddef.h>
 
 int is_numeric(const char *str)
 {

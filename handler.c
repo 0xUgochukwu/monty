@@ -15,12 +15,12 @@ void handler(FILE *file)
 	while (fgets(buffer, BUFFER_SIZE, file) != NULL)
 	{
 		line_number++;
-		opcode = strtok(buffer, " \t\n");
+		opcode = strtok(buffer, " \t\n$");
 
 		if (opcode == NULL || opcode[0] == '#')
 			continue; /* Ignore empty lines and comments */
 
-		argument = strtok(NULL, " \t\n");
+		argument = strtok(NULL, " \t\n$");
 
 		if (strcmp(opcode, "push") == 0)
 		{
@@ -34,7 +34,7 @@ void handler(FILE *file)
 		}
 		else if (strcmp(opcode, "pall") == 0)
 		{
-			pall(&stack, line_number);
+			pall(&stack);
 		}
 		else
 		{
