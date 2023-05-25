@@ -91,7 +91,6 @@ void handler(FILE *file)
 			exit(EXIT_FAILURE);
 	}
 
-	free(argument);
 	_free(stack);
 }
 
