@@ -25,3 +25,29 @@ void mod(stack_t **stack, unsigned int line_number)
 	(*stack)->next->n %= (*stack)->n;
 	pop(stack, line_number);
 }
+
+/**
+ * pchar - Prints the character at the top of the stack.
+ * @stack: Double pointer to the head of the stack.
+ * @line_number: Current line number.
+ */
+void pchar(stack_t **stack, unsigned int line_number)
+{
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%d: can't pchar, stack empty\n", line_number);
+		_free(*stack);
+		exit(EXIT_FAILURE);
+	}
+
+	if ((*stack)->n < 0 || (*stack)->n > 127)
+	{
+		fprintf(stderr, "L%d: can't pchar, value out of range\n", line_number);
+		_free(*stack);
+		exit(EXIT_FAILURE);
+	}
+
+	putchar((*stack)->n);
+	putchar('\n');
+}
+
