@@ -53,7 +53,7 @@ void sub(stack_t **stack, unsigned int line_number)
  * @stack: Double pointer to the head of the stack.
  * @line_number: Current line number.
  */
-void div(stack_t **stack, unsigned int line_number)
+void _div(stack_t **stack, unsigned int line_number)
 {
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
