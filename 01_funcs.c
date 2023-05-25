@@ -7,7 +7,7 @@
  */
 void push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new_node = malloc(sizeof(stack_t));
+	stack_t *new_node;
 
 	if (!argument || _isdigit(argument) == 1)
 	{
@@ -16,6 +16,7 @@ void push(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
+	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
