@@ -85,3 +85,55 @@ void pstr(stack_t **stack, unsigned int line_number)
 		printf("\n");
 	}
 }
+
+/**
+ * rotl - Rotates the stack to the top.
+ * @stack: Double pointer to the head of the stack.
+ * @line_number: Current line number.
+ */
+void rotl(stack_t **stack, unsigned int line_number)
+{
+	stack_t *current = *stack;
+	stack_t *last = *stack;
+
+	(void)line_number;
+
+	if (current == NULL || current->next == NULL)
+		return;
+
+	while (last->next != NULL)
+		last = last->next;
+
+	last->next = current;
+	current->prev = last;
+	*stack = current->next;
+	current->next = NULL;
+	(*stack)->prev = NULL;
+}
+
+
+/**
+ * rotr - Rotates the stack to the bottom.
+ * @stack: Double pointer to the head of the stack.
+ * @line_number: Current line number.
+ */
+void rotr(stack_t **stack, unsigned int line_number)
+{
+	stack_t *current = *stack;
+	stack_t *last = *stack;
+
+	(void)line_number;
+
+	if (current == NULL || current->next == NULL)
+		return;
+
+	while (last->next != NULL)
+		last = last->next;
+
+	last->next = current;
+	current->prev = last;
+	*stack = last->next;
+	(*stack)->prev = NULL;
+	last->next = NULL;
+}
+
