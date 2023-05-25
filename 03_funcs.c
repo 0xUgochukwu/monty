@@ -59,7 +59,7 @@ void pchar(stack_t **stack, unsigned int line_number)
  */
 void pstr(stack_t **stack, unsigned int line_number)
 {
-	stack_t *top_node = *stack;
+	stack_t *current = *stack;
 
 	(void)line_number;
 
@@ -69,12 +69,13 @@ void pstr(stack_t **stack, unsigned int line_number)
 	}
 	else
 	{
-		while (top_node != NULL)
+		while (current != NULL)
 		{
-			if ((top_node->n > 0) && (isascii(top_node->n)))
+			if ((current->n > 0) && current->n > 0 &&
+					current->n < 127)
 			{
-				printf("%c", top_node->n);
-				top_node = top_node->next;
+				printf("%c", current->n);
+				current = current->next;
 			}
 			else
 			{
