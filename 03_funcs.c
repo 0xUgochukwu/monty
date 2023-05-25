@@ -69,8 +69,7 @@ void pstr(stack_t **stack, unsigned int line_number)
 	}
 
 	while (current != NULL &&
-			current->n != 0 &&
-			current->n >= 0 &&
+			current->n > 0 &&
 			current->n <= 127)
 
 	{
