@@ -1,127 +1,95 @@
 #include "monty.h"
 
-/**
- * push - Pushes an element to the stack.
- * @stack: Double pointer to the head of the stack.
- * @line_number: current line number
- */
-void push(stack_t **stack, unsigned int line_number)
-{
-	stack_t *new_node;
-
-	if (!argument || _isdigit(argument) == 1)
-	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		_free(*stack);
-		exit(EXIT_FAILURE);
-	}
-
-	new_node = malloc(sizeof(stack_t));
-	if (new_node == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		free(new_node);
-		_free(*stack);
-		exit(EXIT_FAILURE);
-	}
-
-	new_node->n = atoi(argument);
-	new_node->prev = NULL;
-	new_node->next = *stack;
-
-	if (*stack != NULL)
-		(*stack)->prev = new_node;
-
-	*stack = new_node;
-}
-
 
 /**
- * pall - Prints all the values on the stack.
- * @stack: Double pointer to the head of the stack.
- * @line_number: current line number
- */
-void pall(stack_t **stack, unsigned int line_number)
-{
-	stack_t *current = *stack;
-	(void)line_number;
-
-	while (current != NULL)
-	{
-		printf("%d\n", current->n);
-		current = current->next;
-	}
-}
-
-
-/**
- * pint - Prints the value at the top of the stack.
+ * add - Adds the top two elements of the stack.
  * @stack: Double pointer to the head of the stack.
  * @line_number: Current line number.
  */
-void pint(stack_t **stack, unsigned int line_number)
+void add(stack_t **stack, unsigned int line_number)
 {
-	if (*stack == NULL)
-	{
-		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
-		_free(*stack);
-		exit(EXIT_FAILURE);
-	}
-
-	printf("%d\n", (*stack)->n);
-}
-
-
-/**
- * pop - Removes the top element of the stack.
- * @stack: Double pointer to the head of the stack.
- * @line_number: Current line number.
- */
-void pop(stack_t **stack, unsigned int line_number)
-{
-	stack_t *temp;
-
-	if (*stack == NULL)
-	{
-		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
-		_free(*stack);
-		exit(EXIT_FAILURE);
-	}
-
-	temp = *stack;
-	*stack = (*stack)->next;
-	if (*stack != NULL)
-		(*stack)->prev = NULL;
-
-	free(temp);
-
-}
-
-
-/**
- * swap - Swaps the top two elements of the stack.
- * @stack: Double pointer to the head of the stack.
- * @line_number: Current line number.
- */
-void swap(stack_t **stack, unsigned int line_number)
-{
-	stack_t *temp;
-
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
-		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
 		_free(*stack);
 		exit(EXIT_FAILURE);
 	}
 
-	temp = (*stack)->next;
-	(*stack)->next = temp->next;
-	if (temp->next != NULL)
-		temp->next->prev = *stack;
-	temp->prev = NULL;
-	temp->next = *stack;
-	(*stack)->prev = temp;
-	(*stack) = temp;
-
-
+	(*stack)->next->n += (*stack)->n;
+	pop(stack, line_number);
 }
+
+/**
+ * nop - Doesn't do anything.
+ * @stack: Double pointer to the head of the stack.
+ * @line_number: Current line number.
+ */
+void nop(stack_t **stack, unsigned int line_number)
+{
+	(void)stack;
+	(void)line_number;
+}
+
+
+
+/**
+ * sub - Subtracts the top element from the second top element of the stack.
+ * @stack: Double pointer to the head of the stack.
+ * @line_number: Current line number.
+ */
+void sub(stack_t **stack, unsigned int line_number)
+{
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%d: can't sub, stack too short\n", line_number);
+		_free(*stack);
+		exit(EXIT_FAILURE);
+	}
+
+	(*stack)->next->n -= (*stack)->n;
+	pop(stack, line_number);
+}
+
+/**
+ * _div - Divides the second top element by the top element of the stack.
+ * @stack: Double pointer to the head of the stack.
+ * @line_number: Current line number.
+ */
+void _div(stack_t **stack, unsigned int line_number)
+{
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%d: can't div, stack too short\n", line_number);
+		_free(*stack);
+		exit(EXIT_FAILURE);
+	}
+
+	if ((*stack)->n == 0)
+	{
+		fprintf(stderr, "L%d: division by zero\n", line_number);
+		_free(*stack);
+		exit(EXIT_FAILURE);
+	}
+
+	(*stack)->next->n /= (*stack)->n;
+	pop(stack, line_number);
+}
+
+/**
+ * mul - Multiplies the second top element of the stack with the top element.
+ * @stack: Double pointer to the head of the stack.
+ * @line_number: Current line number.
+ */
+void mul(stack_t **stack, unsigned int line_number)
+{
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%d: can't mul, stack too short\n", line_number);
+		_free(*stack);
+		exit(EXIT_FAILURE);
+	}
+
+	(*stack)->next->n *= (*stack)->n;
+	pop(stack, line_number);
+}
+
