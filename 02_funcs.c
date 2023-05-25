@@ -101,7 +101,7 @@ void rotl(stack_t **stack, unsigned int line_number)
 	if (current == NULL || current->next == NULL)
 		return;
 
-	while (last->next != NULL)
+	while (last->next)
 		last = last->next;
 
 	last->next = current;
@@ -127,13 +127,13 @@ void rotr(stack_t **stack, unsigned int line_number)
 	if (current == NULL || current->next == NULL)
 		return;
 
-	while (last->next != NULL)
+	while (last->next)
 		last = last->next;
 
+	last->prev->next = NULL;
+	last->prev = NULL;
 	last->next = current;
 	current->prev = last;
-	*stack = last->next;
-	(*stack)->prev = NULL;
-	last->next = NULL;
+	*stack = last;
 }
 
