@@ -90,5 +90,8 @@ void handler(FILE *file)
 		if (!execute_opcode(opcode, &stack, line_number))
 			exit(EXIT_FAILURE);
 	}
+
+	free(argument);
+	_free(stack);
 }
 
