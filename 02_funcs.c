@@ -49,7 +49,7 @@ void sub(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * div - Divides the second top element by the top element of the stack.
+ * _div - Divides the second top element by the top element of the stack.
  * @stack: Double pointer to the head of the stack.
  * @line_number: Current line number.
  */
