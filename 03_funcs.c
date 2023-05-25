@@ -59,7 +59,7 @@ void pchar(stack_t **stack, unsigned int line_number)
  */
 void pstr(stack_t **stack, unsigned int line_number)
 {
-		stack_t *current = *stack;
+	stack_t *current = *stack;
 
 	(void)line_number;
 
@@ -73,7 +73,7 @@ void pstr(stack_t **stack, unsigned int line_number)
 			current->n < 127)
 
 	{
-		putchar(current->n);
+		printf("%c", current->n);
 		current = current->next;
 	}
 
