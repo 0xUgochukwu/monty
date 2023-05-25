@@ -73,7 +73,7 @@ void pstr(stack_t **stack, unsigned int line_number)
 			current->n <= 127)
 
 	{
-		putchar(current->n);
+		printf("%c", top_node->n);
 		current = current->next;
 	}
 
