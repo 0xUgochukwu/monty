@@ -67,16 +67,21 @@ void pstr(stack_t **stack, unsigned int line_number)
 	{
 		printf("\n");
 	}
-
-	while (current != NULL &&
-			current->n > 0 &&
-			current->n < 127)
-
+	else
 	{
-		printf("%c", current->n);
-		current = current->next;
+		while (current != NULL)
+		{
+			if ((current->n > 0) && current->n > 0 &&
+					current->n < 127)
+			{
+				printf("%c", current->n);
+				current = current->next;
+			}
+			else
+			{
+				break;
+			}
+		}
+		printf("\n");
 	}
-
-	putchar('\n');
 }
-
