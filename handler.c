@@ -42,6 +42,8 @@ int execute_opcode(char *opcode, stack_t **stack, unsigned int line_number)
 		{"pop", pop},
 		{"swap", swap},
 		{"add", add},
+		{"nop", nop},
+		{"sub", sub},
 		{NULL, NULL}
 	};
 
@@ -76,7 +78,7 @@ void handler(FILE *file)
 	{
 		line_number++;
 
-		if (!get_opcode_argument(buffer, &opcode) || strcmp(opcode, "nop") == 0)
+		if (!get_opcode_argument(buffer, &opcode))
 			continue;
 
 
