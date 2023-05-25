@@ -45,6 +45,7 @@ int execute_opcode(char *opcode, stack_t **stack, unsigned int line_number)
 		{"nop", nop},
 		{"sub", sub},
 		{"div", _div},
+		{"mul", mul},
 		{NULL, NULL}
 	};
 
